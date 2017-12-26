@@ -156,7 +156,7 @@ let iterative_2 = (n) => {
 }
 ```
 1. The number of operations needed scales quadratically with n.
-2. The time complexity is O(n^2).
+2. The time-complexity is O(n^2).
 3. There is no worst case scenario, because we our longest loop will always be O(n^2). 
 4. The space-complexity is O(1), because we do not need to allocate any additional slots in memory.
 
@@ -177,6 +177,68 @@ let iterative_3 = (n, m) => {
 }
 ```
 1. The number of operations needed scales linearly with n and m.
-2. The time complexity is O(nm).
+2. The time-complexity is O(nm).
 3. There is no worst case because we must always perform nm operations.
 4. The space-complexity is O(1), because we do not need to allocate any additional slots in memory.
+
+# Recursion
+## Problem 1 
+```(ruby)
+def rec_mystery(n)
+  return n if n < 5
+
+  rec_mystery(n - 5)
+end
+```
+1. The number of operations scales linearly with n. 
+2. The time-complexity is O(n/5).
+3. There is no worst case scenario because we will always need O(n/5) operations.
+4. The space-complexity is O(n/5), because we need to create that many stack frames for a given n. 
+
+## Problem 2
+```(ruby)
+def rec_mystery_2(n)
+  return 0 if n == 0
+
+  rec_mystery_2(n/5) + 1
+end
+```
+1. The number of operations scales linearly with n. 
+2. The time-complexity is O(n/5).
+3. There is no worst case scenario because we will always need O(n/5) operations.
+4. The space-complexity is O(n/5), because we need to create that many stack frames for a given n. 
+
+## Problem 3
+```(java)
+void rec_mystery_3(int n, int m, int o)
+{
+  if (n <= 0)
+  {
+    printf("%d, %d\n", m, o);
+  }
+  else
+  {
+    rec_mystery_3(n-1, m+1, o);
+    rec_mystery_3(n-1, m, o+1);
+  }
+}
+```
+1. The number of operations scales linearly with n. 
+2. The time-complexity is O(n).
+3. There is no worst case scenario because we will always need O(n) operations.
+4. The space-complexity is O(n), because we need to create that many stack frames for a given n.
+
+## Problem 4 
+```(ruby)
+class Array
+  def grab_bag
+    return [[]] if empty?
+    bag = take(count - 1).grab_bag
+    bag.concat(bag.map { |handful| handful + [last] })
+  end
+end
+```
+1. The number of operations scales factorially with count (count == n).
+2. The time complexity is O(n!)
+3. There is no worst case scenario because we will always need O(n!) operations.
+4. The space-complexity is O(n!) because we need n! stack frames for each count == n.
