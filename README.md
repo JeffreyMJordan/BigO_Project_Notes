@@ -104,5 +104,21 @@ end
 ```
 1. The number of operations needed scales quadratically with the length of the array (arr.length == n)
 2. The time-complexity is O(n^2).
-3. The worst case is when the value of each `target + el` is always at the end of `arr`. (For example, we could have `target = 0` and `arr = [0,0,0,0,0,0]`, requiring us to iterate through all of `arr` each time we call `search`.
+3. The worst case is when the value of each `target + el` is always at the end of `arr`. (For example, we could have `target = 0` and `arr = [0,0,0,0,0,0]`, requiring us to iterate through all of `arr` each time we call `search`).
+4. The space-complexity is O(n), because we need to define a new memory slot in `results` for each item in `arr`.
+
+## Problem 8
+```(ruby)
+def searchity_search_2(arr, target)
+  results = []
+  arr.each do |el|
+    results << search(arr, el)
+  end
+
+  results  
+end
+```
+1. The number of operations needed scales quadratically with the length of the array (arr.length == n)
+2. The time-complexity is O(n^2).
+3. The worst case is when we're given an array with all unique elements, requiring us to iterate through all the preceding elements before `search` returns our target.
 4. The space-complexity is O(n), because we need to define a new memory slot in `results` for each item in `arr`.
