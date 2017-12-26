@@ -122,3 +122,61 @@ end
 2. The time-complexity is O(n^2).
 3. The worst case is when we're given an array with all unique elements, requiring us to iterate through all the preceding elements before `search` returns our target.
 4. The space-complexity is O(n), because we need to define a new memory slot in `results` for each item in `arr`.
+
+# Iterations 
+## Problem 1
+```(javascript)
+let iterative_1 = (n, m) => {
+  let notes = ["do", "rei", "mi", "fa", "so", "la", "ti", "do"];
+
+  for (var i = 0; i < n; i++) {
+    for (var j = 0; j < m; j++) {
+      let position = (i+j) % 8;
+      console.log(notes[position]);
+    }
+  }
+}
+```
+1. The number of operations scales linearly with the size of n and m.
+2. The time-complexity is O(nm).
+3. There is no worst case because we must always perform nm operations.
+4. The space-complexity is O(1), because we do not need to allocate any additional slots in memory.
+
+## Problem 2
+```(javascript)
+let iterative_2 = (n) => {
+  let notes = ["do", "rei", "mi", "fa", "so", "la", "ti", "do"];
+
+  for (var i = 0; i < n; i++) {
+    for (var j = i; j >= 0; j--) {
+      let position = (i+j) % 8;
+      console.log(notes[position]);
+    }
+  }
+}
+```
+1. The number of operations needed scales quadratically with n.
+2. The time complexity is O(n^2).
+3. There is no worst case scenario, because we our longest loop will always be O(n^2). 
+4. The space-complexity is O(1), because we do not need to allocate any additional slots in memory.
+
+## Problem 3
+```(javascript)
+let iterative_3 = (n, m) => {
+  let notes = ["do", "rei", "mi", "fa", "so", "la", "ti", "do"];
+
+  let bigger = n > m ? n : m;
+  let smaller = n <= m ? n : m;
+
+  for (var i = 0; i < smaller; i++) {
+    for (var j = i; j < bigger; j++) {
+      let position = (i+j) % 8;
+      console.log(notes[position]);
+    }
+  }
+}
+```
+1. The number of operations needed scales linearly with n and m.
+2. The time complexity is O(nm).
+3. There is no worst case because we must always perform nm operations.
+4. The space-complexity is O(1), because we do not need to allocate any additional slots in memory.
