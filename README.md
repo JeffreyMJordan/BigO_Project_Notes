@@ -54,5 +54,55 @@ end
 ```
 1. The number of operations needed scales linearly with the length of the array (arr.length == n)
 2. The time-complexity is O(n).
-3. The worst case is when there is no element such that `el === arr.length/2 -1`
+3. The worst case is when there is no element such that `el == arr.length/2 -1`
 4. The space-complexity is O(1), because we do not need to allocate any additional memory slots.
+
+## Problem 5
+```(ruby)
+def print_arr_4(arr)
+  arr.each do |el|
+    break if el == arr.length/2 - 1
+    puts el
+  end
+
+  arr.each_with_index do |el, idx|
+    puts el if idx % 3 == 0
+  end
+
+  puts arr.last
+end
+```
+1. The number of operations needed scales linearly with the length of the array (arr.length == n)
+2. The time-complexity is O(n).
+3. The worst case is when there is no elements such that `el == arr.length/2 -1`.
+4. The space-complexity is O(1), because we do not need to allocate any additional memory slots.
+
+## Problem 6
+```(ruby)
+def search(arr, target)
+  arr.each_with_index do |el, idx|
+    return idx if el == target
+  end
+end
+```
+1. The number of operations needed scales linearly with the length of the array (arr.length == n)
+2. The time-complexity is O(n).
+3. The worst case is when the element we're searching for is at the very end of the array.
+4. The space-complexity is O(1), because we do not need to allocate any additional memory slots.
+
+
+## Problem 7
+```(ruby)
+def searchity_search(arr, target)
+  results = []
+  arr.each do |el|
+    results << search(arr, target + el)
+  end
+
+  results  
+end
+```
+1. The number of operations needed scales quadratically with the length of the array (arr.length == n)
+2. The time-complexity is O(n^2).
+3. The worst case is when the value of each `target + el` is always at the end of `arr`. (For example, we could have `target = 0` and `arr = [0,0,0,0,0,0]`, requiring us to iterate through all of `arr` each time we call `search`.
+4. The space-complexity is O(n), because we need to define a new memory slot in `results` for each item in `arr`.
